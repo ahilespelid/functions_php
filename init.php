@@ -96,6 +96,10 @@ if(!function_exists('is_phone')){function is_phone(string $s, int $minDigits = 1
 return (preg_match('/^7[0-9]{'.$minDigits.','.$maxDigits.'}\z/', $s)) ? $s : null;}}
 ///*/ahilespelid Проверка строки на email///*/
 if(!function_exists('is_email')){function is_email(string $email){return (false !== filter_var($email, FILTER_VALIDATE_EMAIL)) ? $email : null;}}
+///*/ Фукция проверяет строку на json ///*/
+if(!function_exists('is_json')){function is_json($json){
+    $decoded = @json_decode($json);
+return \JSON_ERROR_NONE === json_last_error() ? json_encode($decoded, \JSON_FORCE_OBJEC) : null;}}
 
 //------------------------------------------------------------------------------STRING-----------------------------------------------------------------------------------------------------------------------------------//  
 ///*/Функция переводит кирилицу в транслит///*/
