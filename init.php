@@ -93,7 +93,7 @@ return $date;}}
 ///*/ahilespelid Проверка на мобильный телефон///*/
 if(!function_exists('is_phone')){function is_phone(string $s, int $minDigits = 10, int $maxDigits = 14){
     $s = str_replace(['+', '(', ')', '-', ' '], '', $s);
-return (preg_match('/^7[0-9]{'.$minDigits.','.$maxDigits.'}\z/', $s)) ? $s : null;}}
+return (preg_match('/^[7|8][0-9]{'.$minDigits.','.$maxDigits.'}\z/', $s)) ? $s : null;}}
 ///*/ahilespelid Проверка строки на email///*/
 if(!function_exists('is_email')){function is_email(string $email){return (false !== filter_var($email, FILTER_VALIDATE_EMAIL)) ? $email : null;}}
 ///*/ Фукция проверяет строку на json ///*/
