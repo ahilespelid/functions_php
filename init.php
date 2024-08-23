@@ -100,6 +100,13 @@ if(!function_exists('is_email')){function is_email(string $email){return (false 
 if(!function_exists('is_json')){function is_json($json){
     $decoded = @json_decode($json);
 return \JSON_ERROR_NONE === json_last_error() ? json_encode($decoded, \JSON_FORCE_OBJEC) : null;}}
+///*/ Фукция проверяет переменную на true ///*/
+if(!function_exists('is_true')){function is_true($bool){
+    $ret = (true === is_bool($bool) && true === $bool) ? true : false;
+return $ret;}}///*/ Фукция проверяет переменную на false ///*/
+if(!function_exists('is_false')){function is_false($bool){
+    $ret = (true === is_bool($bool) && false === $bool) ? true : false;
+return $ret;}}
 
 //------------------------------------------------------------------------------STRING-----------------------------------------------------------------------------------------------------------------------------------//  
 ///*/Функция переводит кирилицу в транслит///*/
@@ -140,15 +147,5 @@ if(!function_exists('post')){function post(string $url, array $data, array $head
     $data = ($data_json_encode) ? json_encode($data) : http_build_query($data);
     curl_setopt_array($curl = curl_init(), $q = [CURLOPT_HTTPHEADER => $headers, CURLOPT_RETURNTRANSFER => 1, CURLOPT_VERBOSE => 1, CURLOPT_POSTFIELDS => $data, CURLOPT_URL => $url, CURLOPT_POST => 1]);
 return curl_exec($curl);}}
-
-
-
-
-
-
-
-
-
-
 
 ///*/ahilespelid///*/
