@@ -93,13 +93,20 @@ return $date;}}
 ///*/ahilespelid Проверка на мобильный телефон///*/
 if(!function_exists('is_phone')){function is_phone(string $s, int $minDigits = 10, int $maxDigits = 14){
     $s = str_replace(['+', '(', ')', '-', ' '], '', $s);
-return (preg_match('/^7[0-9]{'.$minDigits.','.$maxDigits.'}\z/', $s)) ? $s : null;}}
+return (preg_match('/^[7|8][0-9]{'.$minDigits.','.$maxDigits.'}\z/', $s)) ? $s : null;}}
 ///*/ahilespelid Проверка строки на email///*/
 if(!function_exists('is_email')){function is_email(string $email){return (false !== filter_var($email, FILTER_VALIDATE_EMAIL)) ? $email : null;}}
 ///*/ Фукция проверяет строку на json ///*/
 if(!function_exists('is_json')){function is_json($json){
     $decoded = @json_decode($json);
 return \JSON_ERROR_NONE === json_last_error() ? json_encode($decoded, \JSON_FORCE_OBJEC) : null;}}
+///*/ Фукция проверяет переменную на true ///*/
+if(!function_exists('is_true')){function is_true($bool){
+    $ret = (true === is_bool($bool) && true === $bool) ? true : false;
+return $ret;}}///*/ Фукция проверяет переменную на false ///*/
+if(!function_exists('is_false')){function is_false($bool){
+    $ret = (true === is_bool($bool) && false === $bool) ? true : false;
+return $ret;}}
 
 //------------------------------------------------------------------------------STRING-----------------------------------------------------------------------------------------------------------------------------------//  
 ///*/Функция переводит кирилицу в транслит///*/
@@ -107,7 +114,7 @@ function translit(string $t){
     $converter = ['а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'zh', 'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch', 'ь' => '', 'ы' => 'y', 'ъ' => '', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya', 'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D', 'Е' => 'E', 'Ё' => 'E', 'Ж' => 'Zh', 'З' => 'Z', 'И' => 'I', 'Й' => 'Y', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N', 'О' => 'O', 'П' => 'P', 'Р' => 'R', 'С' => 'S', 'Т' => 'T', 'У' => 'U', 'Ф' => 'F', 'Х' => 'H', 'Ц' => 'C', 'Ч' => 'Ch', 'Ш' => 'Sh', 'Щ' => 'Sch', 'Ь' => '', 'Ы' => 'Y', 'Ъ' => '', 'Э' => 'E', 'Ю' => 'Yu', 'Я' => 'Ya'];
 return strtr($t, $converter);}
 ///*/ Функция разбивает строку по разделителям переданным в массиве///*/
-if(!function_exists('mexlpode')){function mexlpode(array $delimiters, string $string){
+if(!function_exists('mexlpode')){function mexplode(array $delimiters, string $string){
     $chr = '::::::::::::::::::::::::::::::::::::::::::::::::';
 return explode($chr, str_replace($delimiters, $chr, $string));}}
 
