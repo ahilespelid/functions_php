@@ -66,8 +66,14 @@ return (empty($ret)) ? null : $ret;}}
 
 //------------------------------------------------------------------------------FILE-SYSTEM------------------------------------------------------------------------------------------------------------------------------//  
 ///*/ ahilespelid Метод возвращает путь до папки local/php_interface Bitrix при учёте что текущий файл лежит в local/php_interface///*/ 
-if(!function_exists('interface_path')){function interface_path(string $file=''){
+if(!function_exists('functions_path')){function functions_path(string $file=''){
     $ret = __DIR__;
+    $ret = (empty($file)) ? $ret : ((file_exists($f = $ret.DIRECTORY_SEPARATOR.$file)) ? $f : null);
+return $ret;}}
+
+///*/ ahilespelid Метод возвращает путь до папки local/php_interface Bitrix при учёте что текущий файл лежит в local/php_interface///*/ 
+if(!function_exists('interface_path')){function interface_path(string $file=''){
+    $ret = dirname(functions_path());
     $ret = (empty($file)) ? $ret : ((file_exists($f = $ret.DIRECTORY_SEPARATOR.$file)) ? $f : null);
 return $ret;}}
 
@@ -146,6 +152,12 @@ return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));}}
 if(!function_exists('post')){function post(string $url, array $data, array $headers = [], bool $data_json_encode = false){
     $data = ($data_json_encode) ? json_encode($data) : http_build_query($data);
     curl_setopt_array($curl = curl_init(), $q = [CURLOPT_HTTPHEADER => $headers, CURLOPT_RETURNTRANSFER => 1, CURLOPT_VERBOSE => 1, CURLOPT_POSTFIELDS => $data, CURLOPT_URL => $url, CURLOPT_POST => 1]);
-return curl_exec($curl);}}
+    $ret = curl_exec($curl); curl_close($curl);
+return $ret;}}
+///*/ Метод эмитации get запроса из php///*/
+if(!function_exists('get')){function get(string $url){
+    curl_setopt_array($curl = curl_init(), $q = [CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => $url]);
+    $ret = curl_exec($curl); curl_close($curl);
+return $ret;}}
 
 ///*/ahilespelid///*/
