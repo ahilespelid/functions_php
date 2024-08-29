@@ -1,7 +1,6 @@
 install bitrix code
 [code]
 if(file_exists($ff = __DIR__.'/functions/init.php')){require_once $ff;}
-///*/ Расшариваю локальные сервисы для ядра битрикса /local/php_interface/service ///*/
 spl_autoload_register(function($class){
     $exp = explode('\\', $class); $namespace = strtolower($exp[0]); $class = $exp[1];  
     if('service' == $namespace && in_array(count($exp), [2,3])){
