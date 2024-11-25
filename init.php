@@ -1,4 +1,4 @@
-<?
+<?php
 //------------------------------------------------------------------------------DEBUG------------------------------------------------------------------------------------------------------------------------------------//  
 ///*/ Функция дампа переменной авторская ///*/
 if(!function_exists('pa')){
@@ -87,6 +87,20 @@ return $ret;}}
 if(!function_exists('resource_path')){function resource_path(string $file=''){
     $ret = interface_path('resource');
     $ret = (empty($file)) ? $ret : ((file_exists($f = $ret.DIRECTORY_SEPARATOR.$file)) ? $f : null);
+return $ret;}}
+
+///*/ ahilespelid Метод возвращает путь до папки img_path ///*/ 
+if(!function_exists('img_path')){function img_path(string $file=''){
+    $ret = resource_path('img');
+    $ret = (empty($file)) ? $ret : ((file_exists($f = $ret.DIRECTORY_SEPARATOR.$file)) ? $f : null);
+return $ret;}}
+
+///*/ ahilespelid Метод возвращает путь до папки img_path ///*/ 
+if(!function_exists('img_base64')){function img_base64(string $file, string $type = ''){
+    if(empty($file = img_path($file))){return null;}else{
+        $mime = (empty($type)) ? getimagesize($file)['mime'] : $type;
+        $ret  = 'data:'.$mime.';base64,'.base64_encode(file_get_contents($file));
+    }
 return $ret;}}
 
 //------------------------------------------------------------------------------IS-CONDITIONS----------------------------------------------------------------------------------------------------------------------------//  
