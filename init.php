@@ -133,7 +133,9 @@ if(!function_exists('prefix')){function prefix(int $length = 5, bool $upcase = t
 return $ret;}}
 ///*/ Функция генерирует GUID из com_create_guid///*/
 if(!function_exists('GUID')){function GUID(){return strtoupper(com_create_guid());}}
-
+if(!function_exists('mb_ucfirst')) {function mb_ucfirst($str) {
+    $fc = mb_strtoupper(mb_substr($str, 0, 1));
+return $fc . mb_substr($str, 1);}}
 
 //------------------------------------------------------------------------------ANALOG-----------------------------------------------------------------------------------------------------------------------------------//  
 ///*/ Функция аналог str_starts_with из php 8 ///*/
