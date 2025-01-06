@@ -8,6 +8,15 @@ if(!function_exists('pa')){
         while($br){$sbr.='<br>'; $br--;}
         echo '<div>'.$fileinfo.'</div>'.$sbr.'<div>'.$mes.'</div>'.'<'.$t.'>'; print_r($a = (!empty($a) ? $a : [])); echo '</'.$t.'>'.PHP_EOL;
 return true;}}
+///*/ Функция дампа переменной в файл ///*/
+if(!function_exists('fa')){
+    function fa($a, $mes='', $br=0, $s=''):bool{
+        $backtrace = debug_backtrace(); $fileinfo = ''; $sbr='';
+        $fileinfo = (!empty($backtrace[0]) && is_array($backtrace[0])) ? $backtrace[0]['file'].':'.$backtrace[0]['line'] : '';
+        while($br){$sbr.=PHP_EOL; $br--;}
+        if(!file_exists($fa_path = $_SERVER['DOCUMENT_ROOT'].DS.'logs'.DS.'fa'.DS)){mkdir($fa_path, 0777, true);}
+        file_put_contents($fa_path.str_replace(['/', DS], '|', $fileinfo).'.log', date('Y-m-d H:i:s').PHP_EOL.$fileinfo.PHP_EOL.$sbr.PHP_EOL.$mes.PHP_EOL.print_r($a = (!empty($a) ? $a : []), true).PHP_EOL, FILE_APPEND);
+return true;}}
 ///*/ Функция дампа переменной аналог laravel ///*/
 if(!function_exists('dd')){
     function dd($a,$br=0,$mes='',$t='pre'):bool{$backtrace = debug_backtrace(); $fileinfo = '';$sbr='';
