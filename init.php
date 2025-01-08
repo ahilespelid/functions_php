@@ -18,7 +18,6 @@ if(!function_exists('fa')){
         while($br){$sbr.=PHP_EOL; $br--;}
         if(!file_exists($fa_path = $_SERVER['DOCUMENT_ROOT'].DS.'logs'.DS.'fa'.DS)){mkdir($fa_path, 0777, true);}
         file_put_contents($fa_name = $fa_path.str_replace(['/', ':', '.', DS], '_', $fileinfo).'.log', date('Ymd_His').PHP_EOL.$fileinfo.PHP_EOL.$sbr.PHP_EOL.$mes.PHP_EOL.print_r($a = (!empty($a) ? $a : []), true).PHP_EOL, FILE_APPEND);
-        pa([$fa_name, $fileinfo]);
 return true;}}
 ///*/ Функция дампа переменной аналог laravel ///*/
 if(!function_exists('dd')){
