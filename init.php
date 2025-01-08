@@ -132,7 +132,7 @@ if(!function_exists('translit')){function translit(string $t){
 return strtr($t, $converter);}}
 ///*/ Функция разбивает строку по разделителям переданным в массиве///*/
 if(!function_exists('mexplode')){function mexplode(array $delimiters, string $string){
-    $chr = '::::::::::::::::::::::::::::::::::::::::::::::::';
+    $chr = '|~:~|';
 return explode($chr, str_replace($delimiters, $chr, $string));}}
 ///*/ Функция переводит строку в snake case///*/
 if(!function_exists('snakecase')){function snakecase($camel_text){return ltrim($snake = preg_replace_callback('/[A-Z]/', fn($m) => '_'.strtolower($m[0]), $camel_text), '_');}}
