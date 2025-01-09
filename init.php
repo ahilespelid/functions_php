@@ -145,7 +145,7 @@ if(!function_exists('prefix')){function prefix(int $length = 5, bool $upcase = t
     $ret = ''; for($i=0;$i<$length;$i++){$ret.= chr($simbols[array_rand($simbols)]);}
 return $ret;}}
 ///*/ Функция генерирует GUID из com_create_guid///*/
-if(!function_exists('GUID')){function GUID(){return strtoupper(com_create_guid());}}
+if(!function_exists('GUID_')){function GUID_(){return strtoupper(com_create_guid());}}
 if(!function_exists('mb_ucfirst')){function mb_ucfirst($str){
     $fc = (extension_loaded('mbstring'))? mb_strtoupper(mb_substr($str, 0, 1)) : strtoupper(mb_substr($str, 0, 1));
 return $fc . mb_substr($str, 1);}}
