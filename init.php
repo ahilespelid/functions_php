@@ -177,3 +177,25 @@ if(!function_exists('get')){function get(string $url, $agent = 'Mozilla/5.0 (Win
 return $ret;}}
 
 ///*/ahilespelid///*/
+
+// Функция для форматирования даты musa 
+if(!function_exists('format_date_intl')) {
+    function format_date_intl($date, $lang = 'ru_RU',$date_format = 'd MMMM yyyy') {
+        $formatter = new IntlDateFormatter(
+            'ru_RU', 
+            IntlDateFormatter::FULL, 
+            IntlDateFormatter::NONE,
+            'Europe/Moscow', 
+            IntlDateFormatter::GREGORIAN, 
+            $date_format
+        );
+        $timestamp = strtotime($date);
+        return $formatter->format($timestamp);
+    }
+}
+
+if(!function_exists('first_slash')) {
+    function first_slash($str) {
+        return ('/' == $str) ? $str : '/' . $str;
+    }
+}
